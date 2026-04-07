@@ -2,7 +2,7 @@
 """
 Created on Mon Mar 16 11:56:01 2026
 
-@author: USER
+@author: tosindataginius
 """
 
 import streamlit as st
@@ -48,9 +48,10 @@ st.markdown("""
 @st.cache_resource
 def load_my_model():
     # Update this path to your actual model location
-    model_path = r"C:\Users\USER\Downloads\my_model (1).keras"
+    # model_path = r"C:\Users\USER\Downloads\Machine\skin_diesease_predict\my_model.keras"
+    model_path = "my_model"
     return tf.keras.models.load_model(model_path)
-
+   
 model = load_my_model()
 
 # --- CLASS MAPPING ---
