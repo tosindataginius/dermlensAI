@@ -8,7 +8,6 @@ Created on Mon Mar 16 11:56:01 2026
 import streamlit as st
 import numpy as np
 from PIL import Image
-import os
 
 # --- CONFIGURATION ---
 st.set_page_config(
@@ -48,14 +47,10 @@ st.markdown("""
 @st.cache_resource
 def load_my_model():
     import tensorflow as tf
-    # This ensures the app looks in the current folder for the file
-    model_path = os.path.join(os.getcwd(), "my_model.keras")
-    
-    if not os.path.exists(model_path):
-        st.error(f"Model file not found at {model_path}. Please ensure it is uploaded to GitHub.")
-        return None
-        
+    model_path = "my_model"
     return tf.keras.models.load_model(model_path)
+
+model = load_my_model()
 
 # --- CLASS MAPPING ---
 # Defined based on your Confusion Matrix order
@@ -88,8 +83,6 @@ st.write("Upload a clear image of the skin lesion for an instant AI analysis.")
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png","jfif"])
 
 if uploaded_file is not None:
-    with st.spinner('Analyzing image...'):
-        from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
     
     
     # Layout with two columns
@@ -109,7 +102,7 @@ if uploaded_file is not None:
             img_processed = img.resize((224, 224)) 
             
             # EXACT same preprocessing as your training script
-            #from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+            from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
             img_array = np.array(img_processed)
             img_array = np.expand_dims(img_array, axis=0)
             img_array = preprocess_input(img_array) # This replaces the /255.0
