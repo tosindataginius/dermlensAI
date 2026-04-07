@@ -7,7 +7,6 @@ Created on Mon Mar 16 11:56:01 2026
 
 import streamlit as st
 import numpy as np
-import tensorflow as tf
 from PIL import Image
 
 # --- CONFIGURATION ---
@@ -47,6 +46,7 @@ st.markdown("""
 # --- MODEL LOADING ---
 @st.cache_resource
 def load_my_model():
+    import tensorflow as tf
     # Update this path to your actual model location
     # model_path = r"C:\Users\USER\Downloads\Machine\skin_diesease_predict\my_model.keras"
     model_path = "my_model"
@@ -85,6 +85,10 @@ st.write("Upload a clear image of the skin lesion for an instant AI analysis.")
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png","jfif"])
 
 if uploaded_file is not None:
+    with st.spinner('Analyzing image...'):
+        from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+    
+    
     # Layout with two columns
     col1, col2 = st.columns([1, 1])
 
@@ -102,7 +106,7 @@ if uploaded_file is not None:
             img_processed = img.resize((224, 224)) 
             
             # EXACT same preprocessing as your training script
-            from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+            #from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
             img_array = np.array(img_processed)
             img_array = np.expand_dims(img_array, axis=0)
             img_array = preprocess_input(img_array) # This replaces the /255.0
