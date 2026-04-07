@@ -8,6 +8,7 @@ Created on Mon Mar 16 11:56:01 2026
 import streamlit as st
 import numpy as np
 from PIL import Image
+import os
 
 # --- CONFIGURATION ---
 st.set_page_config(
@@ -47,12 +48,14 @@ st.markdown("""
 @st.cache_resource
 def load_my_model():
     import tensorflow as tf
-    # Update this path to your actual model location
-    # model_path = r"C:\Users\USER\Downloads\Machine\skin_diesease_predict\my_model.keras"
-    model_path = "my_model"
+    # This ensures the app looks in the current folder for the file
+    model_path = os.path.join(os.getcwd(), "my_model.keras")
+    
+    if not os.path.exists(model_path):
+        st.error(f"Model file not found at {model_path}. Please ensure it is uploaded to GitHub.")
+        return None
+        
     return tf.keras.models.load_model(model_path)
-   
-model = load_my_model()
 
 # --- CLASS MAPPING ---
 # Defined based on your Confusion Matrix order

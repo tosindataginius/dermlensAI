@@ -1,7 +1,7 @@
-tensorflow-cpu==2.15.0
+tensorflow-cpu
 streamlit
 opencv-python-headless
-numpy<2.0.0
+numpy
 Pillow
 scikit-learn
 matplotlib
