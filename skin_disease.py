@@ -49,7 +49,7 @@ st.markdown("""
 def load_my_model():
     import tensorflow as tf
     # This ensures the app looks in the current folder for the file
-    model_path = os.path.join(os.getcwd(), "my_modelo.keras")
+    model_path = os.path.join(os.getcwd(), "my_model.keras")
     
     if not os.path.exists(model_path):
         st.error(f"Model file not found at {model_path}. Please ensure it is uploaded to GitHub.")
