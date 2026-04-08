@@ -1,10 +1,10 @@
 # 🩺 DermLens AI: Intelligent Skin Disease Classification
 DermLens AI is a deep-learning-powered web application designed to assist in the early identification of skin conditions. By leveraging a custom-trained MobileNetV2 architecture, DermLens provides instant, high-confidence analysis of skin lesions across 10 distinct categories.
 
-## Live Demo
+## 🚀 Live Demo
 DermLens AI is proudly hosted on Streamlit Cloud. Experience the clinical-grade interface and real-time predictions without installing a single dependency.
 
-Launch DermLens AI on Streamlit
+ [Launch DermLens AI on Streamlit](https://dermlensai.streamlit.app/)
 
 Why Streamlit? We chose Streamlit for its ability to turn data scripts into shareable web apps in minutes. It allows DermLens to handle heavy TensorFlow models in the backend while providing a sleek, responsive frontend for users.
 
